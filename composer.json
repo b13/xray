@@ -1,0 +1,20 @@
+{
+	"name": "b13/xray",
+	"description": "X-Rays your TYPO3 installation. Suggests and performs improvements.",
+	"type": "typo3-cms-extension",
+	"homepage": "https://b13.com",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"typo3/cms-core": "^10.4 || ^11.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"B13\\Xray\\": "Classes/"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "xray"
+		}
+	}
+}

@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  B13\Xray\:
+    resource: '../Classes/*'
+
+  B13\Xray\Command\ExternalLinksCommand:
+    tags:
+      - name: 'console.command'
+        command: 'xray:external-links'
+        schedulable: false
