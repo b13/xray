@@ -67,7 +67,11 @@ class ExternalLink
      * @var array
      */
     protected $matches = [];
-    protected string $baseUrl;
+
+    /**
+     * @var string
+     */
+    protected $baseUrl;
 
     public function __construct(int $pid, int $uid, string $table, string $field, string $fieldContent, string $baseUrl, SiteLanguage $language, Site $site)
     {
