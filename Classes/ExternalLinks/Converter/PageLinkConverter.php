@@ -50,7 +50,11 @@ class PageLinkConverter extends Converter implements SingletonInterface
         foreach ($link->getMatchedLinks() as $matchedLink) {
             foreach ($this->getUrlCandidates($link) as $url) {
                 if ($matchedLink === $url['uri']) {
-                    $link->convert($matchedLink, 't3://page?uid=' . $url['target']);
+                    $targetUri = 't3://page?uid=' . $url['target'];
+                    if ($link->getLanguage()->getLanguageId() !== 0) {
+                        $targetUri .= '&_language=' . $link->getLanguage()->getLanguageId();
+                    }
+                    $link->convert($matchedLink, $targetUri);
                     continue 2;
                 }
             }
