@@ -88,6 +88,9 @@ class ExternalLink
 
     public function toCliTableRow(): array
     {
+        if ($this->conversionMemory === []) {
+            return [];
+        }
         return [
             $this->pid,
             $this->table,

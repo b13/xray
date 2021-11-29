@@ -60,7 +60,11 @@ class TableOutput
         $table = new Table($this->output);
         $table->setHeaders(['PID', 'Table', 'UID', 'Field', 'Found external Link', 'Would be converted to']);
         foreach ($this->collection as $externalLink) {
-            $table->addRow($externalLink->toCliTableRow());
+            $result = $externalLink->toCliTableRow();
+            if ($result === []) {
+                continue;
+            }
+            $table->addRow($result);
         }
         $table->render();
 
