@@ -33,8 +33,8 @@ jobs:
       - name: Lint PHP
         run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -s lint
 
-      #- name: CGL
-      #  run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -s cgl
+      - name: CGL
+        run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -s cgl -n -v
 
       - name: phpstan
         run: Build/Scripts/runTests.sh -p ${{ matrix.php }} -t ${{ matrix.TYPO3 }} -s phpstan -v

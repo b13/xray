@@ -33,6 +33,7 @@
 		"typo3/testing-framework": "^6",
 		"phpstan/phpstan": "^0.12.11",
 		"phpunit/phpunit": "^8.4",
-		"typo3/coding-standards": "^0.5.0"
+		"typo3/coding-standards": "^0.5.0",
+		"friendsofphp/php-cs-fixer": "^3.0 || ^2.16.0"
 	}
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -97,7 +98,7 @@ class ExternalLink
             $this->uid,
             $this->field,
             implode(', ', array_keys($this->conversionMemory)),
-            implode(' ,', $this->conversionMemory)
+            implode(' ,', $this->conversionMemory),
         ];
     }
 

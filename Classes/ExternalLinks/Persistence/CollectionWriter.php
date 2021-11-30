@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -37,14 +38,14 @@ class CollectionWriter
             $connection->update(
                 $link->getTable(),
                 [
-                    $link->getField() => $link->getConvertedContent()
+                    $link->getField() => $link->getConvertedContent(),
                 ],
                 [
-                    'uid' => $link->getUid()
+                    'uid' => $link->getUid(),
                 ],
                 [
                     \PDO::PARAM_STR,
-                    \PDO::PARAM_INT
+                    \PDO::PARAM_INT,
                 ]
             );
         }
