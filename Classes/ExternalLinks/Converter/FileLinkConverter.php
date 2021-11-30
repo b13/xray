@@ -41,10 +41,7 @@ class FileLinkConverter extends Converter
 
     protected function canConvert(ExternalLink $link): bool
     {
-        return in_array(
-            $link->getExtension(),
-            explode(',', $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext'] ?? '')
-        );
+        return $link->isFile();
     }
 
     public function convert(ExternalLink $link): void
