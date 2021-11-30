@@ -14,7 +14,25 @@
 	},
 	"extra": {
 		"typo3/cms": {
-			"extension-key": "xray"
+			"extension-key": "xray",
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"web-dir": ".Build/Web"
 		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"B13\\Xray\\Tests\\": "Tests",
+			"TYPO3\\JsonResponse\\": ".Build/Web/typo3conf/ext/json_response/Classes"
+		}
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin"
+	},
+	"require-dev": {
+		"typo3/testing-framework": "^6",
+		"phpstan/phpstan": "^0.12.11",
+		"phpunit/phpunit": "^8.4",
+		"typo3/coding-standards": "^0.5.0"
 	}
 }
