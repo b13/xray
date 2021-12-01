@@ -1,0 +1,4 @@
+/.Build
+/Build/testing-docker/.env
+/Build/testing-docker/.envBuild/testing-docker/.env
+/composer.lock

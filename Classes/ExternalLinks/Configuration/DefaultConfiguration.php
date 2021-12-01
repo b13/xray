@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -19,8 +20,8 @@ class DefaultConfiguration implements ConfigurationInterface
     protected $tablesAndFields = [
         'tt_content' => [
             'header_link',
-            'bodytext'
-        ]
+            'bodytext',
+        ],
     ];
 
     public function getTablesAndFields(): array

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -59,7 +60,7 @@ class ExternalLinkCollectionFactory
         $collection = new ExternalLinkCollection(
             [
                 $this->pageLinkConverter,
-                $this->fileLinkConverter
+                $this->fileLinkConverter,
             ]
         );
 
