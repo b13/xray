@@ -67,7 +67,11 @@ class FileLinkConverter extends Converter
             // Does our URI start with storage path?
             if (strpos($uri, $storageUrl, 0) === 0) {
                 $fileIdentifier = '/' . substr($uri, strlen($storageUrl));
-                $file = $this->resourceFactory->getFileObjectByStorageAndIdentifier($storageId, $fileIdentifier);
+                try {
+                    $file = $this->resourceFactory->getFileObjectByStorageAndIdentifier($storageId, $fileIdentifier);
+                } catch (\InvalidArgumentException $e) {
+                    return 0;
+                }
                 if (!$file instanceof File) {
                     return 0;
                 }
