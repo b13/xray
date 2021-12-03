@@ -14,6 +14,7 @@ namespace B13\Xray\ExternalLinks;
 
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ExternalLink
 {
@@ -164,5 +165,14 @@ class ExternalLink
     public function getBaseUrl(): string
     {
         return $this->baseUrl;
+    }
+
+    public function isFile(): bool
+    {
+        return GeneralUtility::inList(strtolower(
+            $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext'] ?? ''),
+            strtolower($this->getExtension())
+        );
+
     }
 }
