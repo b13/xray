@@ -1,9 +1,16 @@
+# paths are relative to location of this config file (in Build directory)
+# TODOS
+# - [ ] remove ignore rule for QueryBuilder::where after TYPO3 v10.4.24 / 11.5.6 is released
+
 parameters:
   level: 5
 
   paths:
     - ../Classes
-    #- ../Tests
+    - ../Tests
+
+  scanDirectories:
+    - ../.Build/Web/typo3/sysext
 
   ignoreErrors:
     # https://phpstan.org/user-guide/ignoring-errors
