@@ -4,3 +4,11 @@ parameters:
   paths:
     - ../Classes
     #- ../Tests
+
+  ignoreErrors:
+    # https://phpstan.org/user-guide/ignoring-errors
+    # must use regular expressions here
+
+    # temporary, ignore warning due to QueryBuilder::where due to wrong type annotation for the function in core
+    # TODO remove after TYPO3 v10.4.24 / 11.5.6
+    - '# Parameter \#1 \.\.\.\$where of method TYPO3\\CMS\\Core\\Database\\Query\\QueryBuilder::andWhere\(\) expects array<int,string>|Doctrine\\DBAL\\Query\\Expression\\CompositeExpression, string given\.#'
