@@ -169,10 +169,11 @@ class ExternalLink
 
     public function isFile(): bool
     {
-        return GeneralUtility::inList(strtolower(
-            $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext'] ?? ''),
+        return GeneralUtility::inList(
+            strtolower(
+            $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext'] ?? ''
+        ),
             strtolower($this->getExtension())
         );
-
     }
 }

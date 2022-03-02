@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace B13\Xray\Tests\Unit\ExternalLinks;
 
 use B13\Xray\ExternalLinks\ExternalLink;
-use B13\Xray\Tests\Unit\AbstractUnitTest;
-use Psr\Http\Message\UriInterface;
 use TYPO3\CMS\Core\Site\Entity\Site;
-use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class ExternalLinkTest extends UnitTestCase
@@ -33,7 +30,7 @@ class ExternalLinkTest extends UnitTestCase
         yield 'Matching URL in text' => [
             'Content https://example.com/abc hello',
             [
-                'https://example.com/abc'
+                'https://example.com/abc',
             ],
         ];
 
@@ -45,7 +42,7 @@ class ExternalLinkTest extends UnitTestCase
         yield 'Matching Link in text' => [
             'Content <a href="https://example.com/abc">abc</a> hello',
             [
-                'https://example.com/abc'
+                'https://example.com/abc',
             ],
         ];
 
@@ -57,7 +54,7 @@ class ExternalLinkTest extends UnitTestCase
         yield 'Matching Link and URL anchor text (anchor text should not match)' => [
             'Content <a href="https://example.com/abc">https://example.com/cef</a> hello',
             [
-                'https://example.com/abc'
+                'https://example.com/abc',
             ],
         ];
 
@@ -88,7 +85,7 @@ class ExternalLinkTest extends UnitTestCase
     {
         $subject = $this->instantiateExternalLinkSubject($fieldContent);
         $subject->prepareMatchedLinks();
-        $this->assertEquals($expectedMatches, $subject->getMatchedLinks());
+        self::assertEquals($expectedMatches, $subject->getMatchedLinks());
     }
 
     protected function instantiateExternalLinkSubject(string $fieldContent): ExternalLink
@@ -104,9 +101,15 @@ class ExternalLinkTest extends UnitTestCase
                 ],
             ],
         ]);
-        return new ExternalLink(1, 1, 'tt_content', 'bodytext', $fieldContent,
-            $baseUrl, $site->getDefaultLanguage(), $site
+        return new ExternalLink(
+            1,
+            1,
+            'tt_content',
+            'bodytext',
+            $fieldContent,
+            $baseUrl,
+            $site->getDefaultLanguage(),
+            $site
         );
     }
-
 }

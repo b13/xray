@@ -4,3 +4,4 @@
 /Build/testing-docker/.envBuild/testing-docker/.env
 /composer.lock
 /var
+/.php-cs-fixer.cache
