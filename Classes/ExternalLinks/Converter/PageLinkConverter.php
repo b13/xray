@@ -68,7 +68,7 @@ class PageLinkConverter extends Converter implements SingletonInterface
         if (isset($this->urlCache[$rootPageId][$languageId])) {
             return $this->urlCache[$rootPageId][$languageId];
         }
-        if (!is_array($this->urlCache[$rootPageId])) {
+        if (!isset($this->urlCache[$rootPageId]) || !is_array($this->urlCache[$rootPageId])) {
             $this->urlCache[$rootPageId] = [];
         }
 
