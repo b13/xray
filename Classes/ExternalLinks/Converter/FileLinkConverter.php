@@ -48,7 +48,7 @@ class FileLinkConverter extends Converter
     public function convert(ExternalLink $link): void
     {
         foreach ($link->getMatchedLinks() as $matchedLink) {
-            $fileId = $this->finMatchingFileId($matchedLink, $link);
+            $fileId = $this->findMatchingFileId($matchedLink, $link);
             if ($fileId === 0) {
                 continue;
             }
@@ -56,7 +56,7 @@ class FileLinkConverter extends Converter
         }
     }
 
-    private function finMatchingFileId(string $uri, ExternalLink $link): int
+    private function findMatchingFileId(string $uri, ExternalLink $link): int
     {
         if (empty($this->storageCache)) {
             $this->fetchStorages();
