@@ -11,4 +11,4 @@ services:
     tags:
       - name: 'console.command'
         command: 'xray:external-links'
-        schedulable: false
+        description: 'Migrates all external links to t3:// syntax'
