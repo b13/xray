@@ -14,8 +14,11 @@ namespace B13\Xray\ExternalLinks\Converter;
 
 use B13\Xray\ExternalLinks\ExternalLink;
 use TYPO3\CMS\Core\Context\LanguageAspectFactory;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class PageLinkConverter extends Converter implements SingletonInterface
 {
@@ -29,9 +32,15 @@ class PageLinkConverter extends Converter implements SingletonInterface
      */
     protected $pageRepository;
 
-    public function __construct(PageRepository $pageRepository)
+    /**
+     * @var QueryGenerator
+     */
+    protected $queryGenerator;
+
+    public function __construct(PageRepository $pageRepository, QueryGenerator $queryGenerator)
     {
         $this->pageRepository = $pageRepository;
+        $this->queryGenerator = $queryGenerator;
     }
 
     protected function canConvert(ExternalLink $link): bool
@@ -72,8 +81,21 @@ class PageLinkConverter extends Converter implements SingletonInterface
             $this->urlCache[$rootPageId] = [];
         }
 
+        // Fetch all pages of the root page recursively
+        $pageIds = GeneralUtility::intExplode(',', $this->queryGenerator->getTreeList($rootPageId, 99));
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('pages');
+        $pages = $queryBuilder
+            ->select('*')
+            ->from('pages')
+            ->where(
+                $queryBuilder->expr()->in('uid', $pageIds)
+            )
+            ->executeQuery()
+            ->fetchAllAssociative();
+
         $pages = $this->pageRepository->getPagesOverlay(
-            $this->pageRepository->getMenu($rootPageId),
+            $pages,
             $languageId
         );
         $languageAspect = LanguageAspectFactory::createFromSiteLanguage($link->getLanguage());
